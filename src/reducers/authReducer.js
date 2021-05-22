@@ -1,28 +1,45 @@
-import api from "../services/Api";
+import axios from '../services/Api'
 
+export const LOGIN = "auth/LOGIN";
+export const RESET = "auth/RESET";
 export const GET_DATA = "GET_DATA";
 const initState = {
-  account: null
+  account: null,
+  token: null
 };
 
 export const getDataAction = (data) => ({
   type: GET_DATA,
   data
 });
+export const reset = () => ({
+  type: RESET,
+});
 
-export const getApi = (params) => async (dispatch) => {
+export const login = (params) => async (dispatch) => {
   // call api
-  // const result = await api();
-  // // dispatch(getDataAction(result));
-  // dispatch({ type: "GET_DATA", data: result });
+  // dispatch({ type: "GET_DATA", data: await api(); });
+
+  const result = await dispatch({
+    type: LOGIN,
+    data: await axios.post(`/auth/login`, params)
+  });
+  // dispatch(getMe())
+  return result;
 };
 
 const authReducer = (state = initState, action) => {
   switch (action.type) {
-    case GET_DATA:
-      console.log("action.data", action.data);
+    case LOGIN:
+      localStorage.setItem('token', action.data?.data?.accessToken);
       return {
-        account: action.data
+        ...state,
+        account: action.data?.data?.user,
+        token: action.data?.data?.accessToken
+      };
+    case RESET:
+      return {
+        ...initState,
       };
 
     default:

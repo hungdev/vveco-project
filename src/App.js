@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import allReducers from "./reducers";
 
-let store = createStore(allReducers, applyMiddleware(thunk));
+export let store = createStore(allReducers, applyMiddleware(thunk));
 
 function App() {
   return (
