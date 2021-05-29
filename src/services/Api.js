@@ -35,7 +35,7 @@ api.interceptors.response.use((response) => response, (error) => {
     window.location.href = '/#/login';
   }
   if (error.response.status === 400 || error.response.status === 404) {
-    console.tron.log('error 400', error.response)
+    console.log('error 400', error.response)
   }
   return Promise.reject(error.response);
 });

@@ -3,6 +3,9 @@ import axios from '../services/Api'
 export const GET_BILL = "auth/GET_BILL";
 export const RESET = "auth/RESET";
 export const GET_DATA = "GET_DATA";
+export const GET_PROVINCE = "GET_PROVINCE";
+export const GET_DISTRICT = "GET_DISTRICT";
+export const GET_WARD = "GET_WARD";
 const initState = {
   bills: null,
 };
@@ -17,7 +20,7 @@ export const getBills = (params) => async (dispatch) => {
   // call api
   const result = await dispatch({
     type: GET_BILL,
-    data: await axios.get(`${url}/1/get`, params)
+    data: await axios.get(`${url}/1/get`, { params })
   });
   return result;
 };

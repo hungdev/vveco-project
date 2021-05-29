@@ -19,7 +19,7 @@ function Login() {
   const onSubmit = () => {
     dispatch(login({ username: fieldState.username, password: fieldState.password }))
   }
-  return token ? <Redirect to={'/dashboard'} /> :
+  return token ? <Redirect to={'/shop'} /> :
     (
       <div>
         Login
