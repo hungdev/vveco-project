@@ -32,6 +32,7 @@ const authReducer = (state = initState, action) => {
   switch (action.type) {
     case LOGIN:
       localStorage.setItem('token', action.data?.data?.accessToken);
+      localStorage.setItem('userId', action.data?.data?.user.id);
       return {
         ...state,
         account: action.data?.data?.user,
